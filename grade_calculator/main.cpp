@@ -1,11 +1,12 @@
 #include "grade_calc.h"
 #include <QApplication>
+#include <QPushButton>
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    grade_calc w;
-    w.show();
+    QApplication app(argc, argv);
+    QPushButton *button = new QPushButton("Hello there");
+    button->show();
 
-    return a.exec();
+    return app.exec();
 }
