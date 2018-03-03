@@ -5,14 +5,21 @@
 #include <QSlider>
 #include <QSpinBox>
 #include <QHBoxLayout>
+#include <QVBoxLayout>
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    QWidget *window = new QWidget;
+    //Create Homework Sliders
+    QWidget *hw_sliders = new QWidget;
+    QVBoxLayout *vlayout = new QVBoxLayout;
 
-    QLabel *label = new QLabel("Hw 1");
+   for (int i = 1; i < 9; i++) {
+    QWidget *window = new QWidget;
+    QLabel *label = new QLabel;
+    QString name = "Hw " + QString::number(i);
+    label->setText(name);
     QSlider *slider = new QSlider(Qt::Horizontal);
     slider->setRange(0, 100);
     slider->setValue(0);
@@ -27,7 +34,11 @@ int main(int argc, char *argv[])
     layout->addWidget(slider);
     layout->addWidget(spinbox);
     window->setLayout(layout);
-    window->show();
+
+    vlayout->addWidget(window);
+   }
+    hw_sliders->setLayout(vlayout);
+    hw_sliders->show();
 
     return app.exec();
 }
