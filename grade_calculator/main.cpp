@@ -24,7 +24,6 @@ int main(int argc, char *argv[])
     layout1->addWidget(course_name);
     layout1->addWidget(box);
     top_widget->setLayout(layout1);
-    top_widget->show();
 
     //Create Homework Sliders
     QWidget *hw_sliders = new QWidget;
@@ -53,7 +52,6 @@ int main(int argc, char *argv[])
    }
 
     hw_sliders->setLayout(vlayout);
-    hw_sliders->show();
 
    //Exam Widget
    QWidget* exam_widget = new QWidget;
@@ -117,12 +115,21 @@ int main(int argc, char *argv[])
    layout3->addWidget(score_widget);
 
    exam_widget->setLayout(layout3);
-   exam_widget->show();
 
-   //QWidget* bottom_2 = new QWidget;
-   //add hw_sliders and exam_widget
+   //Combine bottom 2 widgets with all score sliders
+   QWidget *bottom_2 = new QWidget;
+   QHBoxLayout *all_scores = new QHBoxLayout;
+   all_scores->addWidget(hw_sliders);
+   all_scores->addWidget(exam_widget);
+   bottom_2->setLayout(all_scores);
 
-   //QVBoxLayout with top_widget and bottom_2
+   //Combine with title widget
+   QWidget *entire_window = new QWidget;
+   QVBoxLayout *whole_layout = new QVBoxLayout;
+   whole_layout->addWidget(top_widget);
+   whole_layout->addWidget(bottom_2);
+   entire_window->setLayout(whole_layout);
+   entire_window->show();
 
    return app.exec();
 }
