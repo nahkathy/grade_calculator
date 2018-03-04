@@ -12,6 +12,7 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
+    //Create Course title Combobox
     QWidget *top_widget = new QWidget;
     QHBoxLayout *layout1 = new QHBoxLayout;
     QLabel *course_name = new QLabel;
@@ -27,8 +28,7 @@ int main(int argc, char *argv[])
     //Create Homework Sliders
     QWidget *hw_sliders = new QWidget;
     QVBoxLayout *vlayout = new QVBoxLayout;
-
-   for (int i = 1; i < 9; i++) {
+    for (int i = 1; i < 9; i++) {
     QWidget *window = new QWidget;
     QLabel *label = new QLabel;
     QString name = "Hw " + QString::number(i);
@@ -51,12 +51,56 @@ int main(int argc, char *argv[])
     vlayout->addWidget(window);
    }
 
-   hw_sliders->setLayout(vlayout);
-   hw_sliders->show();
+    hw_sliders->setLayout(vlayout);
+    hw_sliders->show();
 
-   //QWidget* exam_widget = new QWidget;
-   //Create small widgets for midterms and final
+   //Exam Widget
+   QWidget* exam_widget = new QWidget;
+    //Labels
+   QLabel *mid1 = new QLabel("Midterm 1");
+   QLabel *mid2 = new QLabel("Midterm 2");
+   QLabel *final = new QLabel("Final Exam");
+    //Sliders
+   QSlider *slid1 = new QSlider(Qt::Horizontal);
+   slid1->setRange(0, 100);
+   slid1->setValue(0);
+   QSlider *slid2 = new QSlider(Qt::Horizontal);
+   slid2->setRange(0, 100);
+   slid2->setValue(0);
+   QSlider *slidf = new QSlider(Qt::Horizontal);
+   slidf->setRange(0, 100);
+   slidf->setValue(0);
+    //SpinBoxes
+   QSpinBox *mid1spin = new QSpinBox;
+   mid1spin->setRange(0, 100);
+   QSpinBox *mid2spin = new QSpinBox;
+   mid2spin->setRange(0, 100);
+   QSpinBox *finspin = new QSpinBox;
+   finspin->setRange(0, 100);
+    //Connect Sliders with respective SpinBoxes
+   QObject::connect(slid1, SIGNAL(valueChanged(int)), mid1spin, SLOT(setValue(int)));
+   QObject::connect(mid1spin, SIGNAL(valueChanged(int)), slid1, SLOT(setValue(int)));
+   QObject::connect(slid2, SIGNAL(valueChanged(int)), mid2spin, SLOT(setValue(int)));
+   QObject::connect(mid2spin, SIGNAL(valueChanged(int)), slid2, SLOT(setValue(int)));
+   QObject::connect(slidf, SIGNAL(valueChanged(int)), finspin, SLOT(setValue(int)));
+   QObject::connect(finspin, SIGNAL(valueChanged(int)), slidf, SLOT(setValue(int)));
+    //Create Schemas and Overall Score
+
    //QVBox Layout to organize them
+   QVBoxLayout *layout3 = new QVBoxLayout;
+   layout3->addWidget(mid1);
+   layout3->addWidget(slid1);
+   layout3->addWidget(mid1spin);
+   layout3->addWidget(mid2);
+   layout3->addWidget(slid2);
+   layout3->addWidget(mid2spin);
+   layout3->addWidget(final);
+   layout3->addWidget(slidf);
+   layout3->addWidget(finspin);
+   //add schemas
+
+   exam_widget->setLayout(layout3);
+   exam_widget->show();
 
    //QWidget* bottom_2 = new QWidget;
    //add hw_sliders and exam_widget
