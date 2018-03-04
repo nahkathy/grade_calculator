@@ -3,6 +3,7 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QSlider>
+#include <QRadioButton>
 #include <QComboBox>
 #include <QSpinBox>
 #include <QHBoxLayout>
@@ -84,7 +85,21 @@ int main(int argc, char *argv[])
    QObject::connect(mid2spin, SIGNAL(valueChanged(int)), slid2, SLOT(setValue(int)));
    QObject::connect(slidf, SIGNAL(valueChanged(int)), finspin, SLOT(setValue(int)));
    QObject::connect(finspin, SIGNAL(valueChanged(int)), slidf, SLOT(setValue(int)));
-    //Create Schemas and Overall Score
+    //Create Schemas
+   QRadioButton *schemeA = new QRadioButton;
+   QRadioButton *schemeB = new QRadioButton;
+   schemeA->setText("Schema A");
+   schemeB->setText("Schema B");
+    //Overall Score
+   QWidget *score_widget = new QWidget;
+   QLabel *score_text = new QLabel;
+   score_text->setText("Overall Score: ");
+   QLabel *score = new QLabel;
+   score->setText(QString::number(3));
+   QHBoxLayout *display_scores = new QHBoxLayout;
+   display_scores->addWidget(score_text);
+   display_scores->addWidget(score);
+   score_widget->setLayout(display_scores);
 
    //QVBox Layout to organize them
    QVBoxLayout *layout3 = new QVBoxLayout;
@@ -97,7 +112,9 @@ int main(int argc, char *argv[])
    layout3->addWidget(final);
    layout3->addWidget(slidf);
    layout3->addWidget(finspin);
-   //add schemas
+   layout3->addWidget(schemeA);
+   layout3->addWidget(schemeB);
+   layout3->addWidget(score_widget);
 
    exam_widget->setLayout(layout3);
    exam_widget->show();
