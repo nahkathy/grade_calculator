@@ -12,3 +12,4 @@ grade_calc::~grade_calc()
 {
     delete ui;
 }
+
