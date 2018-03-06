@@ -8,13 +8,21 @@
 #include <QSpinBox>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QFont>
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
+    QFont font("Arial", -1, -1, false);
+    QApplication::setFont(font);
+
+    QLabel *score = new QLabel;
+    score->setText("0");
+
     //Create Course title Combobox
     QWidget *top_widget = new QWidget;
+    top_widget->setFixedSize(575, 60);
     QHBoxLayout *layout1 = new QHBoxLayout;
     QLabel *course_name = new QLabel;
     course_name->setText("Course: ");
@@ -27,8 +35,24 @@ int main(int argc, char *argv[])
 
     //Create Homework Sliders
     QWidget *hw_sliders = new QWidget;
+    hw_sliders->setFixedSize(300, 650);
     QVBoxLayout *vlayout = new QVBoxLayout;
-    for (int i = 1; i < 9; i++) {
+
+    /*
+    QSlider *hw_s[n_hw];
+    QSpinBox *hw_sp[n_hw];
+    for (int i = 0; i < n_hw; i++) {
+        hw_s[i] = new QSlider(Qt::Horizontal);
+        hw_s[i]->setRange(0, 100);
+        hw_s[i]->setValue(0);
+        hw_sp[i] = new QSpinBox;
+        hw_sp[i]->setRange(0, 100);
+        QObject::connect(hw_s[i], SIGNAL(valueChanged(int)), hw_sp[i], SLOT(setValue(int)));
+        QObject::connect(hw_sp[i], SIGNAL(valueChanged(int)), hw_s[i], SLOT(setValue(int)));
+        QObject::connect(hw_sp[i], SIGNAL(valueChanged(int)), this, SLOT(update_overall));
+    } */
+
+ for (int i = 1; i < 9; i++) {
     QWidget *window = new QWidget;
     QLabel *label = new QLabel;
     QString name = "Hw " + QString::number(i);
@@ -41,6 +65,9 @@ int main(int argc, char *argv[])
 
     QObject::connect(slider, SIGNAL(valueChanged(int)), spinbox, SLOT(setValue(int)));
     QObject::connect(spinbox, SIGNAL(valueChanged(int)), slider, SLOT(setValue(int)));
+
+    //CONNECT HW TO OVERALL SCORE????
+    QObject::connect(slider, SIGNAL(valueChanged(int)), score, SLOT(setNum(int)));
 
     QHBoxLayout *layout = new QHBoxLayout;
     layout->addWidget(label);
@@ -55,6 +82,7 @@ int main(int argc, char *argv[])
 
    //Exam Widget
    QWidget* exam_widget = new QWidget;
+   exam_widget->setFixedSize(225, 650);
     //Labels
    QLabel *mid1 = new QLabel("Midterm 1");
    QLabel *mid2 = new QLabel("Midterm 2");
@@ -92,8 +120,7 @@ int main(int argc, char *argv[])
    QWidget *score_widget = new QWidget;
    QLabel *score_text = new QLabel;
    score_text->setText("Overall Score: ");
-   QLabel *score = new QLabel;
-   score->setText(QString::number(3));
+
    QHBoxLayout *display_scores = new QHBoxLayout;
    display_scores->addWidget(score_text);
    display_scores->addWidget(score);
@@ -130,6 +157,9 @@ int main(int argc, char *argv[])
    whole_layout->addWidget(bottom_2);
    entire_window->setLayout(whole_layout);
    entire_window->show();
+
+   //TO DO: MAKE EVERYTHING FUNCTIONAL, ADD TOOL BAR
+
 
    return app.exec();
 }
