@@ -43,7 +43,7 @@
     </item>
     <item>
      <property name="text">
-      <string>PIC 10C. Advanced Programming</string>
+      <string>PIC 10C. Advanced Programming.</string>
      </property>
     </item>
    </widget>
@@ -414,7 +414,7 @@
      <rect>
       <x>310</x>
       <y>60</y>
-      <width>71</width>
+      <width>201</width>
       <height>16</height>
      </rect>
     </property>
@@ -456,7 +456,7 @@
      <rect>
       <x>310</x>
       <y>120</y>
-      <width>71</width>
+      <width>181</width>
       <height>16</height>
      </rect>
     </property>
@@ -498,7 +498,7 @@
      <rect>
       <x>310</x>
       <y>180</y>
-      <width>111</width>
+      <width>191</width>
       <height>16</height>
      </rect>
     </property>
@@ -561,6 +561,19 @@
      <string>Schema B</string>
     </property>
    </widget>
+   <widget class="QLabel" name="letter_grade">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>340</y>
+      <width>41</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -584,13 +597,6 @@
     <property name="title">
      <string>File</string>
     </property>
-    <widget class="QMenu" name="menuOpen">
-     <property name="title">
-      <string>Open</string>
-     </property>
-     <addaction name="actionNew_Window"/>
-    </widget>
-    <addaction name="menuOpen"/>
     <addaction name="actionClose"/>
    </widget>
    <addaction name="menuSettings"/>

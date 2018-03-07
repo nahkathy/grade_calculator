@@ -33,6 +33,9 @@ public slots:
     void make_schemeA();
     void make_schemeB();
     void change_value(bool);
+    void pic10b();
+    void pic10c();
+    void change_class();
 
 private:
     Ui::grade_calculator *ui;
